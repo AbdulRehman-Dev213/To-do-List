@@ -1,0 +1,214 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --primary: #5b5bd6;
+  --primary-hover: #4747b8;
+  --on-primary: #ffffff;
+  --text: #e2e8f0;
+  --muted: #465a75;
+  --light-muted: #849dbd;
+  --border: #334155;
+  --input-bg: #0f172a;
+  --ring: rgba(91, 91, 214, 0.35);
+  --done: #34d399;
+  --danger: #d81a1a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 1rem;
+  color: var(--text);
+  background-color: var(--bg);
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.todo-container {
+  width: 100%;
+  max-width: 30rem;
+  height: auto;
+  padding: 1rem;
+  border: 2px solid var(--border);
+  background-color: var(--card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+}
+.todo-container h1 {
+  font-size: clamp(1.5rem, 6vw, 2.1rem);
+  text-align: center;
+}
+
+.todo-container .add-todo {
+  display: flex;
+  gap: 0.75rem;
+  width: 90%;
+  font-family: "Poppins", sans-serif;
+}
+.add-todo input {
+  flex: 1;
+  min-width: 0;
+  border: 2px solid var(--muted);
+  font-family: "Inter", sans-serif;
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+.add-todo input:focus {
+  border: 3px solid var(--primary);
+  outline: none;
+}
+.add-todo button {
+  padding: 10px 15px;
+  border-radius: 10px;
+  background-color: var(--primary);
+  color: var(--on-primary);
+  outline: none;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  width: 5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.add-todo button:hover {
+  background-color: var(--primary-hover);
+}
+.todo-container #todo-Lists {
+  max-height: 12rem;
+  width: 90%;
+  margin: 1rem 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  overflow: auto;
+}
+#todo-Lists li {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.75rem;
+  min-width: 0;
+  width: 100%;
+}
+li .task {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex: 1;
+  min-width: 0;
+}
+li span {
+  font-size: 0.95rem;
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+li .todo-actions {
+  display: flex;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.checkbox {
+  appearance: none;
+  position: relative;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.checkbox:checked + span {
+  text-decoration: line-through;
+}
+.checkbox:checked::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: -1px;
+  width: 20px;
+  height: 20px;
+  background-color: var(--primary);
+  border-radius: 50%;
+}
+.checkbox:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  background-color: var(--primary);
+}
+#todo-Lists li .remove-todo {
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--danger);
+  border-radius: 50%;
+  outline: none;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  line-height: 1;
+  cursor: pointer;
+}
+li .edit-todo{
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  background-color: var(--muted);
+  color: var(--on-primary);
+  width: 1.75rem;
+  height: 1.75rem;
+  cursor: pointer;
+}
+.edit-todo:disabled{
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .todo-container {
+    padding: 0.75rem;
+  }
+
+  .todo-container .add-todo,
+  .todo-container #todo-Lists {
+    width: 100%;
+  }
+
+  #todo-Lists li {
+    gap: 0.5rem;
+  }
+
+  #todo-Lists li .edit-todo,
+  #todo-Lists li .remove-todo {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+}
